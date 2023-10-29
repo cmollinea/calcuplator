@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
-import { useCalculatorStore } from '@/app/store/calculator-store';
+import { useCalculatorStore } from '@/app/store';
 import { Currencies } from '@/app/global';
 
 function SourceSelect() {
@@ -44,6 +44,9 @@ function SourceSelect() {
           </SelectItem>
           <SelectItem disabled={currencyEx.target === 'EUR'} value='EUR'>
             EUR
+          </SelectItem>
+          <SelectItem disabled={currencyEx.target === 'CUP'} value='CUP'>
+            CUP
           </SelectItem>
         </SelectGroup>
       </SelectContent>

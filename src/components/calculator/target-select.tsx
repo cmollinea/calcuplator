@@ -1,7 +1,7 @@
 'use client';
 
 import { Currencies } from '@/app/global';
-import { useCalculatorStore } from '@/app/store/calculator-store';
+import { useCalculatorStore } from '@/app/store';
 import {
   Select,
   SelectContent,
