@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRightLeftIcon } from 'lucide-react';
+import { ArrowRightLeftIcon, XSquareIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 import {
   Card,
@@ -87,6 +87,20 @@ function Calculator({ exRates }: Props) {
             placeholder='Ingrese la cantidad deseada'
           />
           {error && <span>Error</span>}
+          <div className='flex space-x-2 mt-4'>
+            <Button
+              type='button'
+              onClick={() => alert('a')}
+              className='w-fit text-lg'
+              size={'lg'}
+              variant={'outline'}
+            >
+              Limpiar
+            </Button>
+            <Button type='submit' size={'lg'} className='text-lg w-full'>
+              Calcular
+            </Button>
+          </div>
         </form>
       </CardFooter>
     </Card>

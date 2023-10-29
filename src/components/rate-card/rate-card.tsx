@@ -14,7 +14,7 @@ type Props = {
 
 function RateCard({ rates }: Props) {
   return (
-    <Card className='max-w-md w-full shadow shadow-card-foreground/20 p-2 hover:border-primary cursor-pointer hover:-translate-y-0.5 transition-all ease-linear active:scale-[.98]'>
+    <Card className='max-w-md w-full shadow shadow-card-foreground/20 p-2 hover:border-primary cursor-pointer transition-all ease-linear active:scale-[.98]'>
       <CardHeader>
         <CardTitle className=' max-md:text-4xl text-5xl font-black flex items-center gap-2'>
           {rates?.currency}/CUP
