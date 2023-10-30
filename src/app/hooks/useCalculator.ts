@@ -2,11 +2,13 @@ import { FormEvent, useRef, useState } from 'react';
 import { useCalculatorStore } from '../store';
 
 export function useCalculator() {
-  const [error, setError] = useState(false);
   const [amount, setAmount] = useState(0);
+  const [error, setError] = useState(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [currencyEx, swapEx] = useCalculatorStore((state) => [
+  const [action, currencyEx, swapEx] = useCalculatorStore((state) => [
+    state.action,
     state.currencyEx,
     state.swapEx
   ]);
@@ -28,13 +30,21 @@ export function useCalculator() {
     }
     setAmount(_amount_);
   };
+
+  const clean = () => {
+    (inputRef.current as HTMLInputElement).value = '';
+    setAmount(0);
+  };
+
   return {
-    error,
+    action,
     amount,
-    inputRef,
+    clean,
     currencyEx,
-    swapEx,
+    error,
     handleCalculate,
-    resetError
+    inputRef,
+    resetError,
+    swapEx
   };
 }

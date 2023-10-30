@@ -1,22 +1,23 @@
 import { create } from 'zustand';
-import { CurrencyEx } from '../global';
+import { CurrencyEx, Action } from '../global';
+
+interface ICalculatorStore {
+  currencyEx: CurrencyEx;
+  action: Action;
+  setCurrencyEx: (arg: CurrencyEx) => void;
+  swapEx: () => void;
+  changeAction: (newAction: Action) => void;
+}
 
 const initialState: CurrencyEx = {
   source: 'USD',
   target: 'CUP'
 };
 
-interface ICalculatorStore {
-  currencyEx: CurrencyEx;
-  setCurrencyEx: (arg: CurrencyEx) => void;
-  swapEx: () => void;
-}
-
 export const useCalculatorStore = create<ICalculatorStore>((set, get) => ({
   currencyEx: initialState,
 
-  setCurrencyEx: (newState: CurrencyEx) =>
-    set((state) => ({ currencyEx: newState })),
+  setCurrencyEx: (newState) => set(() => ({ currencyEx: newState })),
 
   swapEx: () => {
     const currentEx = get().currencyEx;
@@ -27,5 +28,11 @@ export const useCalculatorStore = create<ICalculatorStore>((set, get) => ({
         target: currentSource
       }
     }));
+  },
+
+  action: 'buy',
+
+  changeAction: (newAction) => {
+    set(() => ({ action: newAction }));
   }
 }));

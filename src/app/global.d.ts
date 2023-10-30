@@ -45,3 +45,5 @@ export interface FormalRate {
   sell: number;
   mid: number;
 }
+
+export type Action = 'buy' | 'sell';

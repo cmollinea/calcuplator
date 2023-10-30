@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRightLeftIcon, XSquareIcon } from 'lucide-react';
+import { AlertTriangle, ArrowRightLeftIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 import {
   Card,
@@ -16,6 +16,7 @@ import { useCalculator } from '@/app/hooks';
 import SourceSelect from './source-select';
 import TargetSelect from './target-select';
 import type { ICurrencyTarget } from '@/app/global';
+import ActionSelect from './action-select';
 
 type Props = {
   exRates: {
@@ -28,23 +29,20 @@ type Props = {
 
 function Calculator({ exRates }: Props) {
   const {
-    inputRef,
+    action,
     amount,
-    error,
+    clean,
     currencyEx,
-    swapEx,
+    error,
+    handleCalculate,
+    inputRef,
     resetError,
-    handleCalculate
+    swapEx
   } = useCalculator();
 
   return (
     <Card className='max-w-sm w-full shadow shadow-card-foreground/20 p-2 transition-all ease-linear place-content-center items-center'>
       <CardHeader>
-        <CardDescription>
-          <small>
-            Comprar {currencyEx.source} con {currencyEx.target}
-          </small>
-        </CardDescription>
         <CardTitle className='font-black flex items-center gap-2 text-center w-full'>
           <span
             className={`${
@@ -59,8 +57,9 @@ function Calculator({ exRates }: Props) {
               <>
                 {(
                   amount *
-                  (exRates[currencyEx.source]?.rates[currencyEx.target]
-                    .sell as number)
+                  (exRates[currencyEx.source]?.rates[currencyEx.target][
+                    action
+                  ] as number)
                 ).toFixed(2)}{' '}
                 <sub className='text-sm px-1'>{currencyEx.target}</sub>
               </>
@@ -77,7 +76,10 @@ function Calculator({ exRates }: Props) {
         </Button>
         <TargetSelect />
       </CardContent>
-      <CardFooter>
+      <CardFooter className='grid'>
+        <CardDescription>
+          <ActionSelect />
+        </CardDescription>
         <form className='w-full' onSubmit={(e) => handleCalculate(e)}>
           <Input
             onChange={resetError}
@@ -86,11 +88,16 @@ function Calculator({ exRates }: Props) {
             inputMode='numeric'
             placeholder='Ingrese la cantidad deseada'
           />
-          {error && <span>Error</span>}
+          {error && (
+            <div className='flex space-x-1 items-center mt-4 text-red-500'>
+              <AlertTriangle size={20} />
+              <span>Debe introducir una cantidad válida.</span>
+            </div>
+          )}
           <div className='flex space-x-2 mt-4'>
             <Button
               type='button'
-              onClick={() => alert('a')}
+              onClick={() => clean()}
               className='w-fit text-lg'
               size={'lg'}
               variant={'outline'}

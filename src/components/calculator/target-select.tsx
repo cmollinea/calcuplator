@@ -13,7 +13,8 @@ import {
 } from '@/components/ui/select';
 
 function TargetSelect() {
-  const [currencyEx, setCurrencyEx] = useCalculatorStore((state) => [
+  const [action, currencyEx, setCurrencyEx] = useCalculatorStore((state) => [
+    state.action,
     state.currencyEx,
     state.setCurrencyEx
   ]);
@@ -33,7 +34,10 @@ function TargetSelect() {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Quiero...</SelectLabel>
+          <SelectLabel>
+            {' '}
+            {action === 'sell' ? 'Quiero...' : 'Poseo...'}
+          </SelectLabel>{' '}
           <SelectItem
             defaultChecked
             disabled={currencyEx.source === 'CUP'}

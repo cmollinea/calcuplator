@@ -6,6 +6,7 @@ import calcuplator from '../../public/calcupLador.jpg';
 import { Github, HistoryIcon } from 'lucide-react';
 import { Oswald } from 'next/font/google';
 import History from '@/components/history/history';
+import Link from 'next/link';
 const oswald = Oswald({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -36,9 +37,16 @@ export default function RootLayout({
             className='h-14 w-14 rounded-full'
           />
           <div className='flex space-x-2'>
-            <Button className=' w-fit font-light space-x-1 p-2'>
-              <Github className='mx-0.5' size={16} /> Repo
-            </Button>
+            <Link
+              target='
+            _blank'
+              rel='nofollow noreferer'
+              href='https://github.com/cmollinea/calcuplator'
+            >
+              <Button className='w-fit font-light space-x-1 p-2'>
+                <Github className='mx-0.5' size={16} /> Repo
+              </Button>
+            </Link>
             <History />
           </div>
         </header>

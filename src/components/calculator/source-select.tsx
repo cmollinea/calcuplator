@@ -12,7 +12,8 @@ import { useCalculatorStore } from '@/app/store';
 import { Currencies } from '@/app/global';
 
 function SourceSelect() {
-  const [currencyEx, setCurrencyEx] = useCalculatorStore((state) => [
+  const [action, currencyEx, setCurrencyEx] = useCalculatorStore((state) => [
+    state.action,
     state.currencyEx,
     state.setCurrencyEx
   ]);
@@ -31,7 +32,9 @@ function SourceSelect() {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Poseo...</SelectLabel>
+          <SelectLabel>
+            {action === 'buy' ? 'Quiero...' : 'Poseo...'}
+          </SelectLabel>
           <SelectItem
             defaultChecked
             disabled={currencyEx.target === 'USD'}

@@ -1,5 +1,6 @@
 import RateCard from '@/components/rate-card/rate-card';
 import {
+  CUP_ENDPOINT,
   EUR_ENDPOINT,
   FORMAL_RATE,
   MLC_ENDPOINT,
@@ -8,19 +9,19 @@ import {
 import { ICurrencyTarget, IFormalCup } from './global';
 import Calculator from '@/components/calculator/calculator';
 import Title from '@/components/ui/title';
-import { AlertTriangle, BadgeInfo, Info, LucideInfo } from 'lucide-react';
+import { AlertTriangle, LucideInfo } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import FormalTable from '@/components/formal-table/formal-table';
 import { getRates } from './services';
-import { InfoCircledIcon } from '@radix-ui/react-icons';
 
-export const revalidate = 43200;
+// export const revalidate = 43200;
 
 async function Home() {
-  const [usdRates, mlcRates, eurRates] = await Promise.all([
+  const [usdRates, mlcRates, eurRates, cupRates] = await Promise.all([
     getRates<ICurrencyTarget>(USD_ENDPOINT),
     getRates<ICurrencyTarget>(MLC_ENDPOINT),
-    getRates<ICurrencyTarget>(EUR_ENDPOINT)
+    getRates<ICurrencyTarget>(EUR_ENDPOINT),
+    getRates<ICurrencyTarget>(CUP_ENDPOINT)
   ]);
 
   const formalRate = getRates<IFormalCup>(FORMAL_RATE);
@@ -28,8 +29,11 @@ async function Home() {
   const exRates = {
     USD: usdRates,
     MLC: mlcRates,
-    EUR: eurRates
+    EUR: eurRates,
+    CUP: cupRates
   };
+
+  //TODO Agreagar a la card el footer con las demas variaciones
 
   return (
     <main className='flex flex-col py-20 space-y-16 px-4'>
