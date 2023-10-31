@@ -2,17 +2,37 @@ import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
 import './globals.css';
 import Image from 'next/image';
-import calcuplator from '../../public/calcupLador.jpg';
-import { Github, HistoryIcon } from 'lucide-react';
+import calcuplator from '../../public/calcupLador2.png';
+import { Github } from 'lucide-react';
 import { Oswald } from 'next/font/google';
 import History from '@/components/history/history';
 import Link from 'next/link';
+import icon from '../../public/calcuplator.ico';
 const oswald = Oswald({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'calCUPlador | Minimalista y de código abierto 📢 ',
   description:
-    'App minimalista y de código abierto para conocer las tasas de cambio y realizar conversiones'
+    'App minimalista y de código abierto para conocer las tasas de cambio en Cuba y realizar conversiones',
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@proc4astinator',
+    images: 'https://calcuplador.vercel.app/calcuplador.png'
+  },
+  icons: icon.src,
+  openGraph: {
+    type: 'website',
+    url: 'https://calcuplador.vercel.app',
+    title: 'calCUPlador | Minimalista y de código abierto 📢',
+    description:
+      'App minimalista y de código abierto para conocer las tasas de cambio en Cuba y realizar conversiones',
+    siteName: 'calCUPlador',
+    images: [
+      {
+        url: 'https://calcuplador.vercel.app/calcuplador.png'
+      }
+    ]
+  }
 };
 
 export default function RootLayout({
@@ -34,7 +54,7 @@ export default function RootLayout({
             height={calcuplator.height}
             width={calcuplator.width}
             alt='calcuplator logo'
-            className='h-14 w-14 rounded-full'
+            className='h-14 w-32 rounded-full'
           />
           <div className='flex space-x-2'>
             <Link
