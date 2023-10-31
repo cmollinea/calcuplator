@@ -40,6 +40,9 @@ function Calculator({ exRates }: Props) {
     swapEx
   } = useCalculator();
 
+  const rate: number =
+    exRates[currencyEx.source]?.rates[currencyEx.target][action];
+
   return (
     <Card className='max-w-sm w-full shadow shadow-card-foreground/20 p-2 transition-all ease-linear place-content-center items-center'>
       <CardHeader>
@@ -55,12 +58,7 @@ function Calculator({ exRates }: Props) {
           >
             {amount > 0 ? (
               <>
-                {(
-                  amount *
-                  (exRates[currencyEx.source]?.rates[currencyEx.target][
-                    action
-                  ] as number)
-                ).toFixed(2)}{' '}
+                {(amount * rate).toFixed(2)}{' '}
                 <sub className='text-sm px-1'>{currencyEx.target}</sub>
               </>
             ) : (
@@ -69,7 +67,7 @@ function Calculator({ exRates }: Props) {
           </span>
         </CardTitle>
       </CardHeader>
-      <CardContent className='grid grid-cols-3 w-full place-content-center'>
+      <CardContent className='grid grid-cols-3 w-full place-content-center justify-between'>
         <SourceSelect />
         <Button className='w-20 h-10' variant={'ghost'} onClick={swapEx}>
           <ArrowRightLeftIcon size={24} />
@@ -80,7 +78,7 @@ function Calculator({ exRates }: Props) {
         <CardDescription>
           <ActionSelect />
         </CardDescription>
-        <form className='w-full' onSubmit={(e) => handleCalculate(e)}>
+        <form className='w-full' onSubmit={(e) => handleCalculate(e, rate)}>
           <Input
             onChange={resetError}
             ref={inputRef}
