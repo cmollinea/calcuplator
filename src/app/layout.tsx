@@ -7,7 +7,6 @@ import { Github } from 'lucide-react';
 import { Oswald } from 'next/font/google';
 import History from '@/components/history/history';
 import Link from 'next/link';
-import icon from '../../public/calcuplator.ico';
 const oswald = Oswald({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -19,7 +18,6 @@ export const metadata: Metadata = {
     creator: '@proc4astinator',
     images: 'https://calcuplador.vercel.app/calcuplador.png'
   },
-  icons: icon.src,
   openGraph: {
     type: 'website',
     url: 'https://calcuplador.vercel.app',
