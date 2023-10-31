@@ -1,5 +1,7 @@
 import { FormEvent, useRef, useState } from 'react';
 import { useCalculatorStore } from '../store';
+import { HistoryEntry, useHistoryStore } from '../store/history-store';
+import { randomUUID } from 'crypto';
 
 export function useCalculator() {
   const [amount, setAmount] = useState(0);
@@ -13,15 +15,18 @@ export function useCalculator() {
     state.swapEx
   ]);
 
+  const createNewHistoryEntry = useHistoryStore(
+    (state) => state.createNewHistoryEntry
+  );
+
   const resetError = () => {
     if (error) {
       setError(false);
     }
   };
 
-  const handleCalculate = (e: FormEvent<HTMLFormElement>) => {
+  const handleCalculate = (e: FormEvent<HTMLFormElement>, rate: number) => {
     e.preventDefault();
-
     const _amount_ = Number(inputRef.current?.value);
 
     if (isNaN(_amount_) || _amount_ <= 0) {
@@ -29,6 +34,18 @@ export function useCalculator() {
       return;
     }
     setAmount(_amount_);
+
+    const entry: HistoryEntry = {
+      id: crypto.randomUUID(),
+      action: action,
+      source: currencyEx.source,
+      target: currencyEx.target,
+      convertionRate: rate,
+      timeStamp: new Date(),
+      amount: _amount_
+    };
+
+    createNewHistoryEntry(entry);
   };
 
   const clean = () => {
