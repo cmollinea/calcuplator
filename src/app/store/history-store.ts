@@ -44,7 +44,7 @@ export const useHistoryStore = create<IHistoryStore>()(
       }
     }),
     {
-      name: 'calculator-history',
+      name: 'history',
       partialize: (state) => ({ history: state.history })
     }
   )
