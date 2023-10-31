@@ -33,6 +33,18 @@ export function useCalculator() {
       setError(true);
       return;
     }
+
+    const entry: HistoryEntry = {
+      id: crypto.randomUUID(),
+      action: action,
+      source: currencyEx.source,
+      target: currencyEx.target,
+      convertionRate: rate,
+      timeStamp: new Date(),
+      amount: _amount_
+    };
+
+    createNewHistoryEntry(entry);
     setAmount(_amount_);
 
     const entry: HistoryEntry = {
