@@ -69,6 +69,39 @@ export default function RootLayout({
           </div>
         </header>
         {children}
+        <footer className='grid justify-center place-items-center py-6 border-t border-foreground/20 rounded-t-xl'>
+          <p>
+            Potenciado por{' '}
+            <a
+              href='https://github.com/decubba/exchange-rate-api'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='underline'
+            >
+              deCubba
+            </a>{' '}
+            y{' '}
+            <a
+              className='underline'
+              target='_blank'
+              rel='noopener noreferrer'
+              href='https://nextjs.org/'
+            >
+              NextJS
+            </a>
+          </p>
+          <p className='text-sm '>
+            Hecho con 💚 por{' '}
+            <a
+              href='https://procastinatordev.vercel.app/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='underline'
+            >
+              @procastinator
+            </a>
+          </p>
+        </footer>
       </body>
     </html>
   );

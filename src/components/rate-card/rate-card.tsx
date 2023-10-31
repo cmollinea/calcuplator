@@ -37,9 +37,9 @@ function RateCard({ rates }: Props) {
           </p>
         </div>
       </CardContent>
-      <CardFooter>
+      {/* <CardFooter>
         <p>Card Footer</p>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }
