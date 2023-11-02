@@ -11,6 +11,10 @@ const oswald = Oswald({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'calCUPlador | Minimalista y de código abierto 📢 ',
+  manifest: '/manifest.json',
+  icons: {
+    apple: '/icon-256x256.png'
+  },
   description:
     'App minimalista y de código abierto para conocer las tasas de cambio en Cuba y realizar conversiones',
   twitter: {
