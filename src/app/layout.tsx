@@ -9,6 +9,8 @@ import History from '@/components/history/history';
 import Link from 'next/link';
 const oswald = Oswald({ subsets: ['latin'] });
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'calCUPlador | Minimalista y de código abierto 📢 ',
   description:
