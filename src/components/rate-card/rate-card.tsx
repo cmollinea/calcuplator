@@ -27,13 +27,19 @@ function RateCard({ rates }: Props) {
         <div>
           <p className='font-light opacity-60'>Compra</p>
           <p className='text-3xl font-bold text-red-500'>
-            ${rates?.rates.CUP.buy.toFixed(1)}
+            ${' '}
+            {rates?.rates.CUP.buy && rates?.rates.CUP.buy > 0
+              ? rates?.rates.CUP.buy?.toFixed(1)
+              : ' ---'}
           </p>
         </div>
         <div>
           <p className='font-light opacity-60'>Venta</p>
           <p className='text-3xl font-bold text-green-400'>
-            ${rates?.rates.CUP.sell.toFixed(1)}
+            $
+            {rates?.rates.CUP.sell && rates?.rates.CUP.sell > 0
+              ? rates?.rates.CUP.sell?.toFixed(1)
+              : ' ---'}
           </p>
         </div>
       </CardContent>
